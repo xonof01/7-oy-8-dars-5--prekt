@@ -6,7 +6,6 @@ import { saveLikedProducts } from '../store/LikedSlice';
 
 function List({ products, setProducts, refresh }) {
 	const dispatch = useDispatch();
-
 	const fetchProducts = useCallback(async () => {
 		try {
 			const response = await axios.get('https://dummyjson.com/products');
@@ -23,7 +22,6 @@ function List({ products, setProducts, refresh }) {
 	useEffect(() => {
 		fetchProducts();
 	}, [fetchProducts, refresh]);
-
 	const handleLikedBtnClick = useCallback(
 		item => {
 			const updatedItem = { ...item, isLiked: !item.isLiked };
@@ -35,8 +33,6 @@ function List({ products, setProducts, refresh }) {
 		},
 		[products, dispatch, setProducts]
 	);
-
-	// Mahsulotlarni `isLiked` qiymatiga qarab saralash
 	const sortedProducts = [...products].sort((a, b) => b.isLiked - a.isLiked);
 
 	return (
