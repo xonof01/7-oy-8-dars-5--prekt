@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
 	likedList: []
 }
-
 export const LikedSlice = createSlice({
 	name: "like",
 	initialState,
@@ -28,5 +26,4 @@ export const LikedSlice = createSlice({
 		}
 	}
 })
-
 export const { saveLikedProducts, deleteLikedProducts } = LikedSlice.actions
