@@ -2,17 +2,13 @@ import { Button, Input, Modal } from 'antd';
 import React, { useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductsCard from './ProductCard';
-
 function Navbar({ products, setProducts, refresh, setRefresh }) {
 	const dispatch = useDispatch();
 	const likedProducts = useSelector(state => state.likedList);
 	const [closeModal, setCloseModal] = useState(false);
-
-	// Liked mahsulotlar narxining yig'indisini hisoblash
 	const totalLikedPrice = useMemo(() => {
 		return likedProducts.reduce((total, item) => total + item.price, 0);
 	}, [likedProducts]);
-
 	function handleDeleteProduct(item) {
 		const updatedItem = { ...item, isLiked: !item.isLiked };
 		const updatedList = products.map(value =>
@@ -21,7 +17,6 @@ function Navbar({ products, setProducts, refresh, setRefresh }) {
 		setProducts(updatedList);
 		dispatch(handleDeleteProduct(updatedItem));
 	}
-
 	function handleInputSearch(e) {
 		const filteredData = products.filter(item =>
 			item.title.toLowerCase().includes(e.target.value.toLowerCase())
