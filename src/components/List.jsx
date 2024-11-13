@@ -36,9 +36,12 @@ function List({ products, setProducts, refresh }) {
 		[products, dispatch, setProducts]
 	);
 
+	// Mahsulotlarni `isLiked` qiymatiga qarab saralash
+	const sortedProducts = [...products].sort((a, b) => b.isLiked - a.isLiked);
+
 	return (
 		<div className='p-5 flex flex-wrap justify-between gap-[25px]'>
-			{products.map(item => (
+			{sortedProducts.map(item => (
 				<ProductCard
 					item={item}
 					handleLikedBtnClick={handleLikedBtnClick}
